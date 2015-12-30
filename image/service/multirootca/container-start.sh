@@ -19,7 +19,6 @@ if [ ! -e "$FIRST_START_DONE" ]; then
   append_value_to_file() {
     local TO_PRINT=$1
     local VALUE=$2
-
     append_to_file "$TO_PRINT = $VALUE"
   }
 
