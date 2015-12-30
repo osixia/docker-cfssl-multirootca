@@ -1,40 +1,15 @@
 #!/bin/bash -e
 
-# get nodes from env var
-ETCD_NODES=""
-KEEPALIVED_CONFD_ETCD_NODES_TABLE=($KEEPALIVED_CONFD_ETCD_NODES)
-for node in "${KEEPALIVED_CONFD_ETCD_NODES_TABLE[@]}"
-do
-  #host var contain a variable name, we access to the variable value and cast it to a table
-  node_txt=${!node}
+CFSSL_MULTIROOTCA_DEFAULT_LABEL_PARAM=""
+CFSSL_MULTIROOTCA_LOGLEVEL_PARAM=""
+CFSSL_MULTIROOTCA_HTTPS_PARAM=""
 
-  # it's a node stored in a variable
-  if [ -n "${node_txt}" ]; then
-    ETCD_NODES="$ETCD_NODES -node ${node_txt}"
+[[ -n "$CFSSL_MULTIROOTCA_DEFAULT_LABEL" ]] && CFSSL_MULTIROOTCA_DEFAULT_LABEL_PARAM="-l $CFSSL_MULTIROOTCA_DEFAULT_LABEL"
+[[ -n "$CFSSL_MULTIROOTCA_LOGLEVEL" ]] && CFSSL_MULTIROOTCA_LOGLEVEL_PARAM="-loglevel $CFSSL_MULTIROOTCA_LOGLEVEL"
 
-  # directly
-  else
-    ETCD_NODES="$ETCD_NODES -node ${node}"
-  fi
-done
-
-# etcd certs
-KEEPALIVED_CONFD_CLIENT_CAKEYS=""
-if [ -n "${KEEPALIVED_CONFD_CLIENT_CAKEYS_FILENAME}" ]; then
-  KEEPALIVED_CONFD_CLIENT_CAKEYS="-client-ca-keys /container/service/etcd/assets/certs/$KEEPALIVED_CONFD_CLIENT_CAKEYS_FILENAME"
+if [ "${CFSSL_MUTLTIROOTCA_HTTPS,,}" == "true" ]; then
+  CFSSL_MULTIROOTCA_HTTPS_PARAM="-tls-cert /container/service/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME -tls-key /container/service/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME"
 fi
 
-KEEPALIVED_CONFD_CLIENT_CERT=""
-if [ -n "${KEEPALIVED_CONFD_CLIENT_CERT_FILENAME}" ]; then
-  KEEPALIVED_CONFD_CLIENT_CERT="-client-cert /container/service/etcd/assets/certs/$KEEPALIVED_CONFD_CLIENT_CERT_FILENAME"
-fi
-
-KEEPALIVED_CONFD_CLIENT_KEY=""
-if [ -n "${KEEPALIVED_CONFD_CLIENT_KEY_FILENAME}" ]; then
-  KEEPALIVED_CONFD_CLIENT_KEY="-client-key /container/service/etcd/assets/certs/$KEEPALIVED_CONFD_CLIENT_KEY_FILENAME"
-
-  chmod 600 /container/service/etcd/assets/certs/$KEEPALIVED_CONFD_CLIENT_KEY_FILENAME
-fi
-
-echo "exec confd $ETCD_NODES -interval $KEEPALIVED_CONFD_INTERVAL -log-level $KEEPALIVED_CONFD_LOG_LEVEL $KEEPALIVED_CONFD_CLIENT_CAKEYS $KEEPALIVED_CONFD_CLIENT_CERT $KEEPALIVED_CONFD_CLIENT_KEY"
-exec confd $ETCD_NODES -interval $KEEPALIVED_CONFD_INTERVAL -log-level $KEEPALIVED_CONFD_LOG_LEVEL $KEEPALIVED_CONFD_CLIENT_CAKEYS $KEEPALIVED_CONFD_CLIENT_CERT $KEEPALIVED_CONFD_CLIENT_KEY
+echo "exec multirootca -a 0.0.0.0:8888 -roots /container/service/multirootca/assets/roots.conf $CFSSL_MULTIROOTCA_DEFAULT_LABEL_PARAM $CFSSL_MULTIROOTCA_LOGLEVEL_PARAM $CFSSL_MULTIROOTCA_HTTPS_PARAM"
+exec multirootca -a 0.0.0.0:8888 -roots /container/service/multirootca/assets/roots.conf $CFSSL_MULTIROOTCA_DEFAULT_LABEL_PARAM $CFSSL_MULTIROOTCA_LOGLEVEL_PARAM $CFSSL_MULTIROOTCA_HTTPS_PARAM

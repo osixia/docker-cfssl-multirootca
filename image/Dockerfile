@@ -5,6 +5,11 @@ MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/run
 CMD ["/container/tool/run"]
 
+# Install cfssl from baseimage
+# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/install-service-available
+RUN apt-get -y update \
+    && /container/tool/install-service-available cfssl
+
 # Add service directory to /container/service
 ADD service /container/service
 
@@ -14,3 +19,5 @@ RUN /container/tool/install-service
 
 # Add default env variables
 ADD env.yaml /container/environment/99-default/env.yaml
+
+EXPOSE 8888
