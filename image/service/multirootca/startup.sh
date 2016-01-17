@@ -1,19 +1,26 @@
 #!/bin/bash -e
 
-FIRST_START_DONE="/etc/docker-multirootca-first-start-done"
+# set -x (bash debug) if log level is trace
+# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/log-helper
+log-helper level eq trace && set -x
+
+FIRST_START_DONE="${CONTAINER_STATE_DIR}/docker-multirootca-first-start-done"
 
 # container first start
 if [ ! -e "$FIRST_START_DONE" ]; then
 
+  # add bin
+  ln -s ${CONTAINER_SERVICE_DIR}/multirootca/assets/multirootca /usr/local/bin/multirootca
+
   # tls config
   if [ "${CFSSL_MUTLTIROOTCA_HTTPS,,}" == "true" ]; then
-    echo "Use HTTPS"
-    cfssl-helper multirootca "/container/service/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME" "/container/service/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME" "/container/service/multirootca/assets/certs/ca.crt"
+    log-helper info "Use HTTPS..."
+    cfssl-helper multirootca "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/ca.crt"
   fi
 
   append_to_file() {
     local TO_APPEND=$1
-    echo "${TO_APPEND}" >> /container/service/multirootca/assets/roots.conf
+    echo "${TO_APPEND}" >> ${CONTAINER_SERVICE_DIR}/multirootca/assets/roots.conf
   }
 
   append_value_to_file() {

@@ -1,14 +1,13 @@
-FROM osixia/light-baseimage:0.2.1-dev
+# Use osixia/light-baseimage
+# sources: https://github.com/osixia/docker-light-baseimage
+FROM osixia/light-baseimage:0.2.1
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
-# Use baseimage's init system.
-# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/run
-CMD ["/container/tool/run"]
-
 # Install cfssl from baseimage
-# https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/install-service-available
+# sources: https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-service-available
+#          https://github.com/osixia/docker-light-baseimage/blob/stable/image/service-available/:cfssl/download.sh
 RUN apt-get -y update \
-    && /container/tool/install-service-available cfssl
+    && /container/tool/add-service-available :cfssl
 
 # Add service directory to /container/service
 ADD service /container/service
@@ -18,6 +17,6 @@ ADD service /container/service
 RUN /container/tool/install-service
 
 # Add default env variables
-ADD env.yaml /container/environment/99-default/env.yaml
+ADD environment /container/environment/99-default
 
 EXPOSE 8888
