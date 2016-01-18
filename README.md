@@ -79,6 +79,8 @@ HTTPS :
 Other configuration:
 
 - **CFSSL_MULTIROOTCA_LOGLEVEL**: Enable ldap client tls config, ldap serveur certificate check and set client  certificate. Defaults to `true`
+- **CFSSL_MULTIROOTCA_CFSSL_PREFIX**: cfssl environment variables prefix. Defaults to `mutltirootca`, cfssl-helper first search config from MUTLTIROOTCA_CFSSL_* variables, before CFSSL_* variables.
+
 
 ### Set your own environment variables
 

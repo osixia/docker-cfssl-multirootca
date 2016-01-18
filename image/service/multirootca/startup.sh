@@ -14,7 +14,7 @@ if [ ! -e "$FIRST_START_DONE" ]; then
   # tls config
   if [ "${CFSSL_MUTLTIROOTCA_HTTPS,,}" == "true" ]; then
     log-helper info "Use HTTPS..."
-    cfssl-helper multirootca "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/ca.crt"
+    cfssl-helper ${CFSSL_MULTIROOTCA_CFSSL_PREFIX} "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/ca.crt"
   fi
 
   append_to_file() {
