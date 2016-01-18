@@ -31,7 +31,7 @@ but setting your own roots.conf is possible. 2 options:
 
 - Link your config file at run time to `/container/service/multirootca/assets/roots.conf` and the  corresponding needed files to `/container/service/multirootca/assets/files`:
 
-      docker run --volume /data/my-roots.conf:/container/service/multirootca/assets/roots.conf --volume /data/files:/container/service/multirootca/assets/files --detach osixia:multirootca:0.1.0
+      docker run --volume /data/my-roots.conf:/container/service/multirootca/assets/roots.conf --volume /data/files:/container/service/multirootca/assets/files --detach osixia/multirootca:0.1.0
 
 - Add your config file by extending or cloning this image, please refer to the [Advanced User Guide](#advanced-user-guide)
 
@@ -131,7 +131,7 @@ Environment variables can be set by adding the --env argument in the command lin
 
 #### Link environment file
 
-For example if your environment file is in :  /data/environment/my-env.yaml
+For example if your environment file is in :  `/data/environment/my-env.yaml`
 
 	docker run --volume /data/environment/my-env.yaml:/container/environment/01-custom/env.yaml \
 	--detach osixia/cfssl-multirootca:0.1.0
