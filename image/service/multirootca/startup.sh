@@ -4,13 +4,12 @@
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/log-helper
 log-helper level eq trace && set -x
 
-FIRST_START_DONE="${CONTAINER_STATE_DIR}/docker-multirootca-first-start-done"
+# add bin
+ln -sf ${CONTAINER_SERVICE_DIR}/multirootca/assets/multirootca /usr/local/bin/multirootca
 
+FIRST_START_DONE="${CONTAINER_STATE_DIR}/docker-multirootca-first-start-done"
 # container first start
 if [ ! -e "$FIRST_START_DONE" ]; then
-
-  # add bin
-  ln -s ${CONTAINER_SERVICE_DIR}/multirootca/assets/multirootca /usr/local/bin/multirootca
 
   # tls config
   if [ "${CFSSL_MUTLTIROOTCA_HTTPS,,}" == "true" ]; then
