@@ -1,6 +1,6 @@
 # osixia/cfssl-multirootca
 
-[![](https://badge.imagelayers.io/osixia/cfssl-multirootca:latest.svg)](https://imagelayers.io/?images=osixia/cfssl-multirootca:latest 'Get your own badge on imagelayers.io') | Latest release: 0.1.0 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/cfssl-multirootca/) 
+[![](https://badge.imagelayers.io/osixia/cfssl-multirootca:latest.svg)](https://imagelayers.io/?images=osixia/cfssl-multirootca:latest 'Get your own badge on imagelayers.io') | Latest release: 0.1.0 - cfssl multirootca 1.1 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/cfssl-multirootca/) 
 
 A docker image to run cfssl multirootca tool.
 > https://github.com/cloudflare/cfssl
