@@ -20,7 +20,7 @@ if [ ! -e "$FIRST_START_DONE" ]; then
     cfssl-helper ${CFSSL_MULTIROOTCA_CFSSL_PREFIX} "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/ca.crt"
 
     [[ ! -d "/etc/ssl/certs/" ]] && mkdir -p /etc/ssl/certs/
-    cat ${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/ca.crt >> /etc/ssl/certs/ca-certificates.crt
+    cat ${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME >> /etc/ssl/certs/ca-certificates.crt
 
   fi
 
