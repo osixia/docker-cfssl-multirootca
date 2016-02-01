@@ -1,9 +1,18 @@
 # osixia/cfssl-multirootca
 
-[![](https://badge.imagelayers.io/osixia/cfssl-multirootca:latest.svg)](https://imagelayers.io/?images=osixia/cfssl-multirootca:latest 'Get your own badge on imagelayers.io') | Latest release: 0.1.0 - cfssl multirootca 1.1 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/cfssl-multirootca/) 
+[![Docker Pulls](https://img.shields.io/docker/pulls/osixia/cfssl-multirootca.svg)][hub]
+[![Docker Stars](https://img.shields.io/docker/stars/osixia/cfssl-multirootca.svg)][hub]
+[![Image Size](https://img.shields.io/imagelayers/image-size/osixia/cfssl-multirootca/latest.svg)](https://imagelayers.io/?images=osixia/cfssl-multirootca:latest)
+[![Image Layers](https://img.shields.io/imagelayers/layers/osixia/cfssl-multirootca/latest.svg)](https://imagelayers.io/?images=osixia/cfssl-multirootca:latest)
+
+[hub]: https://hub.docker.com/r/osixia/cfssl-multirootca/
+
+Latest release: 0.1.0 - cfssl multirootca 1.1 - [Changelog](CHANGELOG.md) | [Docker Hub](https://hub.docker.com/r/osixia/cfssl-multirootca/) 
+
 
 A docker image to run cfssl multirootca tool.
 > https://github.com/cloudflare/cfssl
+
 
 - [Beginner Guide](#beginner-guide)
 	- [Use your own config](#use-your-own-config)
