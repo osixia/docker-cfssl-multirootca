@@ -7,7 +7,9 @@ MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 # sources: https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-service-available
 #          https://github.com/osixia/docker-light-baseimage/blob/stable/image/service-available/:cfssl/download.sh
 RUN apt-get -y update \
-    && /container/tool/add-service-available :cfssl
+    && /container/tool/add-service-available :cfssl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add service directory to /container/service
 ADD service /container/service
