@@ -7,13 +7,13 @@ MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 # sources: https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-service-available
 #          https://github.com/osixia/docker-light-baseimage/blob/stable/image/service-available/:cfssl/download.sh
 RUN apt-get -y update \
-    && /container/tool/add-service-available :cfssl \
     && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends \
        curl \
        ca-certificates \
+    && /container/tool/add-service-available :cfssl \
     && curl -o /usr/local/bin/multirootca -SL https://pkg.cfssl.org/R1.2/multirootca_linux-amd64 \
     && chmod +x /usr/local/bin/multirootca \
-    && apt-get remove -y --purge --auto-remove \
+    && apt-get remove -y --purge --auto-remove curl ca-certificates \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
