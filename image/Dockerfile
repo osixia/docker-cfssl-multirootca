@@ -10,7 +10,7 @@ RUN apt-get -y update \
     && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends \
        curl \
        ca-certificates \
-    && /container/tool/add-service-available :cfssl \
+    && /container/tool/add-service-available :ssl-tools \
     && curl -o /usr/local/bin/multirootca -SL https://pkg.cfssl.org/R1.2/multirootca_linux-amd64 \
     && chmod +x /usr/local/bin/multirootca \
     && apt-get remove -y --purge --auto-remove curl ca-certificates \
