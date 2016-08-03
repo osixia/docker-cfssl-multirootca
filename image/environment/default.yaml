@@ -17,5 +17,5 @@ CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME: cfssl-mutlirootca.key
 
 CFSSL_MULTIROOTCA_LOGLEVEL: 1
 
-# cfssl environment variables prefix
-CFSSL_MULTIROOTCA_SSL_HELPER_PREFIX: multirootca # ssl-helper first search config from MUTLTIROOTCA_CFSSL_* variables, before SSL_HELPER_* variables.
+# ssl-helper environment variables prefix
+CFSSL_MULTIROOTCA_SSL_HELPER_PREFIX: multirootca # ssl-helper first search config from MUTLTIROOTCA_SSL_HELPER_* variables, before SSL_HELPER_* variables.
