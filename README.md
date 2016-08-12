@@ -125,7 +125,7 @@ See how to [set your own environment variables](#set-your-own-environment-variab
 
   To convert yaml to python online: http://yaml-online-parser.appspot.com/
 
-- **CFSSL_MULTIROOTCA_DEFAULT_LABEL**: Server default label. Defaults to ``
+- **CFSSL_MULTIROOTCA_CMD_ARGS**: multirootca command arguments default. Defaults to `-l primary -loglevel 1`
 
 HTTPS :
 - **CFSSL_MUTLTIROOTCA_HTTPS**: Use https. Defaults to `false`
@@ -133,8 +133,6 @@ HTTPS :
 - **CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME**: SSL certificate private key filename. Defaults to `cfssl-mutlirootca.key`
 
 Other configuration:
-
-- **CFSSL_MULTIROOTCA_LOGLEVEL**: Enable ldap client tls config, ldap serveur certificate check and set client  certificate. Defaults to `true`
 - **CFSSL_MULTIROOTCA_SSL_HELPER_PREFIX**: ssl-helper environment variables prefix. Defaults to `multirootca`, ssl-helper first search config from MUTLTIROOTCA_SSL_HELPER_* variables, before SSL_HELPER_* variables.
 
 ### Set your own environment variables

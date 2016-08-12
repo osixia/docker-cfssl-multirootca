@@ -9,13 +9,11 @@ CFSSL_MULTIROOTCA_ROOTS:
     - certificate: testdata/server.crt
     - config: testdata/config.json
 
-CFSSL_MULTIROOTCA_DEFAULT_LABEL:
+CFSSL_MULTIROOTCA_CMD_ARGS: -l primary -loglevel 1
 
 CFSSL_MUTLTIROOTCA_HTTPS: false
 CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME: cfssl-mutlirootca.crt
 CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME: cfssl-mutlirootca.key
-
-CFSSL_MULTIROOTCA_LOGLEVEL: 1
 
 # ssl-helper environment variables prefix
 CFSSL_MULTIROOTCA_SSL_HELPER_PREFIX: multirootca # ssl-helper first search config from MUTLTIROOTCA_SSL_HELPER_* variables, before SSL_HELPER_* variables.
