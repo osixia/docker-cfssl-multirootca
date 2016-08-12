@@ -2,8 +2,6 @@
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/osixia/cfssl-multirootca.svg)][hub]
 [![Docker Stars](https://img.shields.io/docker/stars/osixia/cfssl-multirootca.svg)][hub]
-[![Image Size](https://img.shields.io/imagelayers/image-size/osixia/cfssl-multirootca/latest.svg)](https://imagelayers.io/?images=osixia/cfssl-multirootca:latest)
-[![Image Layers](https://img.shields.io/imagelayers/layers/osixia/cfssl-multirootca/latest.svg)](https://imagelayers.io/?images=osixia/cfssl-multirootca:latest)
 
 [hub]: https://hub.docker.com/r/osixia/cfssl-multirootca/
 
