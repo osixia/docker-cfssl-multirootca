@@ -1,19 +1,5 @@
-CFSSL_MULTIROOTCA_ROOTS:
-  - primary:
-    - private: file://testdata/server.key
-    - certificate: testdata/server.crt
-    - config: testdata/config.json
-    - nets: 10.0.2.1/24,172.16.3.1/24, 192.168.3.15/32
-  - backup:
-    - private: file://testdata/server.key
-    - certificate: testdata/server.crt
-    - config: testdata/config.json
-
 CFSSL_MULTIROOTCA_CMD_ARGS: -l primary -loglevel 1
 
 CFSSL_MUTLTIROOTCA_HTTPS: false
 CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME: cfssl-mutlirootca.crt
 CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME: cfssl-mutlirootca.key
-
-# ssl-helper environment variables prefix
-CFSSL_MULTIROOTCA_SSL_HELPER_PREFIX: multirootca # ssl-helper first search config from MUTLTIROOTCA_SSL_HELPER_* variables, before SSL_HELPER_* variables.
