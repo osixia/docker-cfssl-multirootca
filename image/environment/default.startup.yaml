@@ -11,3 +11,5 @@ CFSSL_MULTIROOTCA_ROOTS:
 
 # ssl-helper environment variables prefix
 CFSSL_MULTIROOTCA_SSL_HELPER_PREFIX: multirootca # ssl-helper first search config from MUTLTIROOTCA_SSL_HELPER_* variables, before SSL_HELPER_* variables.
+
+SSL_HELPER_AUTO_RENEW_SERVICES_IMPACTED: multirootca
