@@ -1,13 +1,19 @@
 # Use osixia/light-baseimage
 # sources: https://github.com/osixia/docker-light-baseimage
-FROM osixia/light-baseimage:0.2.4
+FROM osixia/light-baseimage:0.2.5
 MAINTAINER Bertrand Gouny <bertrand.gouny@osixia.net>
 
 # Install cfssl from baseimage
 # sources: https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/add-service-available
-#          https://github.com/osixia/docker-light-baseimage/blob/stable/image/service-available/:cfssl/download.sh
+#          https://github.com/osixia/docker-light-baseimage/blob/stable/image/service-available/:ssl-tools/download.sh
 RUN apt-get -y update \
-    && /container/tool/add-service-available :cfssl \
+    && LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends \
+       curl \
+       ca-certificates \
+    && /container/tool/add-service-available :ssl-tools \
+    && curl -o /usr/local/bin/multirootca -SL https://pkg.cfssl.org/R1.2/multirootca_linux-amd64 \
+    && chmod +x /usr/local/bin/multirootca \
+    && apt-get remove -y --purge --auto-remove curl ca-certificates \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

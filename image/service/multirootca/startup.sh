@@ -4,9 +4,6 @@
 # https://github.com/osixia/docker-light-baseimage/blob/stable/image/tool/log-helper
 log-helper level eq trace && set -x
 
-# add bin
-ln -sf ${CONTAINER_SERVICE_DIR}/multirootca/assets/multirootca /usr/local/bin/multirootca
-
 FIRST_START_DONE="${CONTAINER_STATE_DIR}/docker-multirootca-first-start-done"
 # container first start
 if [ ! -e "$FIRST_START_DONE" ]; then
@@ -15,9 +12,9 @@ if [ ! -e "$FIRST_START_DONE" ]; then
   if [ "${CFSSL_MUTLTIROOTCA_HTTPS,,}" == "true" ]; then
     log-helper info "Use HTTPS..."
 
-    # generate a certificate and key with cfssl tool if LDAP_CRT and LDAP_KEY files don't exists
-    # https://github.com/osixia/docker-light-baseimage/blob/stable/image/service-available/:cfssl/assets/tool/cfssl-helper
-    cfssl-helper ${CFSSL_MULTIROOTCA_CFSSL_PREFIX} "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/ca.crt"
+    # generate a certificate and key with ssl-helper tool if LDAP_CRT and LDAP_KEY files don't exists
+    # https://github.com/osixia/docker-light-baseimage/blob/stable/image/service-available/:ssl-tools/assets/tool/ssl-helper
+    ssl-helper ${CFSSL_MULTIROOTCA_SSL_HELPER_PREFIX} "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_CRT_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/$CFSSL_MUTLTIROOTCA_HTTPS_KEY_FILENAME" "${CONTAINER_SERVICE_DIR}/multirootca/assets/certs/ca.crt"
 
   fi
 
