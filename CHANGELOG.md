@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.3
+  - Upgrade baseimage: light-baseimage:0.2.6
+
 ## 0.1.2
   - Upgrade cfssl 1.2.0
   - Upgrade baseimage: light-baseimage:0.2.5
