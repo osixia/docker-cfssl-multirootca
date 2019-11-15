@@ -1,5 +1,5 @@
 NAME = osixia/cfssl-multirootca
-VERSION = 0.3.0
+VERSION = 0.3.1
 
 .PHONY: build build-nocache test tag-latest push push-latest release git-tag-version
 

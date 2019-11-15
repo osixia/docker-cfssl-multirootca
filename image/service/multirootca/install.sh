@@ -39,8 +39,8 @@ esac
 echo "Going to use ${HOST_ARCH} cfssl binaries"
 
 echo "Download cfssl ..."
-echo "curl -o /usr/local/bin/multirootca -SL https://github.com/osixia/cfssl/releases/download/1.4.0/multirootca_linux-${HOST_ARCH}"
-curl -o /usr/local/bin/multirootca -SL "https://github.com/osixia/cfssl/releases/download/1.4.0/multirootca_linux-${HOST_ARCH}"
+echo "curl -o /usr/local/bin/multirootca -SL https://github.com/osixia/cfssl/releases/download/1.4.1/multirootca_linux-${HOST_ARCH}"
+curl -o /usr/local/bin/multirootca -SL "https://github.com/osixia/cfssl/releases/download/1.4.1/multirootca_linux-${HOST_ARCH}"
 
 chmod +x /usr/local/bin/multirootca
 
